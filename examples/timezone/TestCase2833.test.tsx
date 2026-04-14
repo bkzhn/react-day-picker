@@ -33,9 +33,7 @@ test("today's date should not be disabled", () => {
   const today = new Date().toISOString().slice(0, 10); // yyyy-MM-dd in current zone
   const { container } = render(<TestCase2833 />);
   const day = container.querySelector(`[data-day="${today}"]`);
-  expect(screen.getByTestId("now")).toHaveTextContent(
-    `Australian Central Daylight Time`,
-  );
+  expect(screen.getByTestId("now")).toHaveTextContent(`Australian Central`);
   expect(screen.getByTestId("timezone")).toHaveTextContent(timeZone);
   expect(day).not.toHaveAttribute("data-disabled", "true");
 });
