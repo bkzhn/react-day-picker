@@ -163,12 +163,12 @@ importers:
       react-day-picker:
         specifier: workspace:^
         version: link:..
-      react-day-picker-v10:
-        specifier: npm:react-day-picker@next
-        version: react-day-picker@10.0.0-next.0(react@19.2.4)
       react-day-picker-v8:
         specifier: npm:react-day-picker@8.10.1
         version: react-day-picker@8.10.1(date-fns@4.1.0)(react@19.2.4)
+      react-day-picker-v9:
+        specifier: npm:react-day-picker@9
+        version: react-day-picker@9.14.0(react@19.2.4)
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
@@ -6367,17 +6367,17 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react-day-picker@10.0.0-next.0:
-    resolution: {integrity: sha512-4G1iOufbaPIbtBhyOHnEcI6ImTwHtlq5lMch9jo+bILELNirAi/YWPrnAKMJ70wa0MVK2jBDjicld9oQj7VHZA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      react: '>=16.8.0'
-
   react-day-picker@8.10.1:
     resolution: {integrity: sha512-TMx7fNbhLk15eqcMt+7Z7S2KF7mfTId/XJDjKE8f+IUcFn0l08/kI4FiYTL/0yuOLmEcbR4Fwe3GJf/NiiMnPA==}
     peerDependencies:
       date-fns: ^2.28.0 || ^3.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  react-day-picker@9.14.0:
+    resolution: {integrity: sha512-tBaoDWjPwe0M5pGrum4H0SR6Lyk+BO9oHnp9JbKpGKW2mlraNPgP9BMfsg5pWpwrssARmeqk7YBl2oXutZTaHA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: '>=16.8.0'
 
   react-dom@19.2.4:
     resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
@@ -15188,17 +15188,17 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react-day-picker@10.0.0-next.0(react@19.2.4):
+  react-day-picker@8.10.1(date-fns@4.1.0)(react@19.2.4):
+    dependencies:
+      date-fns: 4.1.0
+      react: 19.2.4
+
+  react-day-picker@9.14.0(react@19.2.4):
     dependencies:
       '@date-fns/tz': 1.4.1
       '@tabby_ai/hijri-converter': 1.0.5
       date-fns: 4.1.0
       date-fns-jalali: 4.1.0-0
-      react: 19.2.4
-
-  react-day-picker@8.10.1(date-fns@4.1.0)(react@19.2.4):
-    dependencies:
-      date-fns: 4.1.0
       react: 19.2.4
 
   react-dom@19.2.4(react@19.2.4):
