@@ -172,7 +172,8 @@ jobs:
       - name: Read package version
         id: package-version
         run: |
-          echo "version=$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
+          version=$(node -p 'require("./package.json").version')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
       - name: Validate publish source
         env:
           EVENT_NAME: ${{ github.event_name }}
