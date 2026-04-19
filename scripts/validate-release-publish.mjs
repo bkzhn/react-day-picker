@@ -6,6 +6,7 @@ import { pathToFileURL } from "node:url";
  * @property {string} eventName
  * @property {string} packageVersion
  * @property {string} [releaseTag]
+ * @property {boolean} [releaseIsPrerelease]
  * @property {string} [requestedReleaseTag]
  * @property {string} [repository]
  * @property {string} [token]
@@ -15,6 +16,7 @@ import { pathToFileURL } from "node:url";
  * @typedef {object} GitHubRelease
  * @property {string} tag_name
  * @property {boolean} draft
+ * @property {boolean} prerelease
  * @property {string | null} published_at
  */
 
@@ -57,6 +59,7 @@ export function readPublishContext(env = process.env) {
     eventName: requireEnv(env, "EVENT_NAME"),
     packageVersion: requireEnv(env, "PACKAGE_VERSION"),
     releaseTag: env.RELEASE_TAG ?? "",
+    releaseIsPrerelease: env.RELEASE_IS_PRERELEASE === "true",
     requestedReleaseTag: env.REQUESTED_RELEASE_TAG ?? "",
     repository: env.GITHUB_REPOSITORY ?? "",
     token: env.GITHUB_TOKEN ?? "",
@@ -109,6 +112,7 @@ export async function validateReleasePublishSource(
   releaseFetcher = fetchReleaseByTag,
 ) {
   const expectedTag = `v${context.packageVersion}`;
+  const isNextVersion = context.packageVersion.includes("-next");
 
   if (context.eventName === "release") {
     if (context.releaseTag !== expectedTag) {
@@ -116,6 +120,13 @@ export async function validateReleasePublishSource(
         `Release tag ${context.releaseTag} does not match package.json version ${context.packageVersion} (expected ${expectedTag}).`,
       );
     }
+
+    if (isNextVersion && !context.releaseIsPrerelease) {
+      throw createValidationError(
+        `GitHub Release ${context.releaseTag} must be marked as a prerelease before publishing ${context.packageVersion}.`,
+      );
+    }
+
     return;
   }
 
@@ -169,6 +180,12 @@ export async function validateReleasePublishSource(
   if (release.draft || !release.published_at) {
     throw createValidationError(
       `GitHub Release ${context.requestedReleaseTag} must already be published before manual publish.`,
+    );
+  }
+
+  if (isNextVersion && !release.prerelease) {
+    throw createValidationError(
+      `GitHub Release ${context.requestedReleaseTag} must be marked as a prerelease before publishing ${context.packageVersion}.`,
     );
   }
 }

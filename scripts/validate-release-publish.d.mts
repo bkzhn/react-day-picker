@@ -2,6 +2,7 @@ export interface PublishValidationContext {
   eventName: string;
   packageVersion: string;
   releaseTag?: string;
+  releaseIsPrerelease?: boolean;
   requestedReleaseTag?: string;
   repository?: string;
   token?: string;
@@ -10,6 +11,7 @@ export interface PublishValidationContext {
 export interface GitHubRelease {
   tag_name: string;
   draft: boolean;
+  prerelease: boolean;
   published_at: string | null;
 }
 

@@ -8,9 +8,8 @@ let context: ReturnType<typeof createContext>;
 let releaseFetcher: jest.MockedFunction<ReleaseFetcher>;
 
 beforeAll(async function loadModule() {
-  ({ validateReleasePublishSource } = await import(
-    "./validate-release-publish.mjs"
-  ));
+  ({ validateReleasePublishSource } =
+    await import("./validate-release-publish.mjs"));
 });
 
 beforeEach(function setupTestState() {
@@ -27,6 +26,7 @@ function createContext(
     eventName: string;
     packageVersion: string;
     releaseTag: string;
+    releaseIsPrerelease: boolean;
     requestedReleaseTag: string;
     repository: string;
     token: string;
@@ -36,6 +36,7 @@ function createContext(
     eventName: "workflow_dispatch",
     packageVersion: "10.0.0-next.0",
     releaseTag: "",
+    releaseIsPrerelease: false,
     requestedReleaseTag: "v10.0.0-next.0",
     repository: "gpbl/react-day-picker",
     token: "test-token",
@@ -47,12 +48,14 @@ function createRelease(
   overrides: Partial<{
     tag_name: string;
     draft: boolean;
+    prerelease: boolean;
     published_at: string | null;
   }> = {},
 ) {
   return {
     tag_name: "v10.0.0-next.0",
     draft: false,
+    prerelease: true,
     published_at: "2026-04-19T10:00:00.000Z",
     ...overrides,
   };
@@ -63,6 +66,7 @@ describe("validateReleasePublishSource", function describeValidateReleasePublish
     beforeEach(function setupReleaseEvent() {
       context.eventName = "release";
       context.releaseTag = "v10.0.0-next.0";
+      context.releaseIsPrerelease = true;
     });
 
     test("it accepts a matching release tag", async function testMatchingReleaseEvent() {
@@ -81,6 +85,20 @@ describe("validateReleasePublishSource", function describeValidateReleasePublish
           validateReleasePublishSource(context, releaseFetcher),
         ).rejects.toThrow(
           "Release tag v10.0.0-next.1 does not match package.json version 10.0.0-next.0 (expected v10.0.0-next.0).",
+        );
+      });
+    });
+
+    describe("when a next version release is not marked as prerelease", function describeNonPrereleaseNextRelease() {
+      beforeEach(function setupNonPrereleaseNextRelease() {
+        context.releaseIsPrerelease = false;
+      });
+
+      test("it rejects the publish", async function testNonPrereleaseNextRelease() {
+        await expect(
+          validateReleasePublishSource(context, releaseFetcher),
+        ).rejects.toThrow(
+          "GitHub Release v10.0.0-next.0 must be marked as a prerelease before publishing 10.0.0-next.0.",
         );
       });
     });
@@ -142,6 +160,20 @@ describe("validateReleasePublishSource", function describeValidateReleasePublish
           validateReleasePublishSource(context, releaseFetcher),
         ).rejects.toThrow(
           "GitHub Release v10.0.0-next.0 must already be published before manual publish.",
+        );
+      });
+    });
+
+    describe("when a next version GitHub Release is not marked as prerelease", function describeNonPrereleaseManualRelease() {
+      beforeEach(function setupNonPrereleaseManualRelease() {
+        releaseFetcher.mockResolvedValue(createRelease({ prerelease: false }));
+      });
+
+      test("it rejects the publish", async function testNonPrereleaseManualRelease() {
+        await expect(
+          validateReleasePublishSource(context, releaseFetcher),
+        ).rejects.toThrow(
+          "GitHub Release v10.0.0-next.0 must be marked as a prerelease before publishing 10.0.0-next.0.",
         );
       });
     });
