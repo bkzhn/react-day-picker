@@ -8,8 +8,9 @@ let context: ReturnType<typeof createContext>;
 let releaseFetcher: jest.MockedFunction<ReleaseFetcher>;
 
 beforeAll(async function loadModule() {
-  ({ validateReleasePublishSource } =
-    await import("./validate-release-publish.mjs"));
+  ({ validateReleasePublishSource } = await import(
+    "./validate-release-publish.mjs"
+  ));
 });
 
 beforeEach(function setupTestState() {
