@@ -1,5 +1,5 @@
+import { DayPicker, enUS, faIR } from "@daypicker/persian";
 import React from "react";
-import { DayPicker, enUS, faIR } from "react-day-picker/persian";
 
 import { render, screen, within } from "@/test/render";
 

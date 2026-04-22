@@ -1,6 +1,5 @@
+import { DayPicker, enUS } from "@daypicker/hijri";
 import React from "react";
-
-import { DayPicker, enUS } from "react-day-picker/hijri";
 
 export function HijriEn() {
   return (
