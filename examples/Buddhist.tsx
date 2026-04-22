@@ -1,6 +1,5 @@
+import { DayPicker } from "@daypicker/buddhist";
 import React from "react";
-
-import { DayPicker } from "react-day-picker/buddhist";
 
 export function Buddhist() {
   return <DayPicker />;

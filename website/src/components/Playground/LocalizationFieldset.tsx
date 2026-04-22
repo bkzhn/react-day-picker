@@ -1,3 +1,9 @@
+import { enUS as enUSBuddhist, th as thBuddhist } from "@daypicker/buddhist";
+import {
+  amET as amETEthiopic,
+  enUS as enUSEthiopic,
+} from "@daypicker/ethiopic";
+import { enUS as enUSHebrew, he as heHebrew } from "@daypicker/hebrew";
 import { arSA as arSAHijri, enUS as enUSHijri } from "@daypicker/hijri";
 import { enUS as enUSPersian, faIR as faIRPersian } from "@daypicker/persian";
 import React from "react";
@@ -6,15 +12,6 @@ import {
   defaultDateLib,
   type Numerals,
 } from "react-day-picker";
-import {
-  enUS as enUSBuddhist,
-  th as thBuddhist,
-} from "react-day-picker/buddhist";
-import {
-  amET as amETEthiopic,
-  enUS as enUSEthiopic,
-} from "react-day-picker/ethiopic";
-import { enUS as enUSHebrew, he as heHebrew } from "react-day-picker/hebrew";
 import * as locales from "react-day-picker/locale";
 
 import styles from "./styles.module.css";

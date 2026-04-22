@@ -7,6 +7,18 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      "@daypicker/buddhist": path.resolve(
+        __dirname,
+        "../packages/buddhist/src/index.tsx",
+      ),
+      "@daypicker/ethiopic": path.resolve(
+        __dirname,
+        "../packages/ethiopic/src/index.tsx",
+      ),
+      "@daypicker/hebrew": path.resolve(
+        __dirname,
+        "../packages/hebrew/src/index.tsx",
+      ),
       "@daypicker/hijri": path.resolve(
         __dirname,
         "../packages/hijri/src/index.tsx",

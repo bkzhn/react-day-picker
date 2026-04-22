@@ -1,6 +1,5 @@
+import { DayPicker, enUS } from "@daypicker/buddhist";
 import React from "react";
-
-import { DayPicker, enUS } from "react-day-picker/buddhist";
 
 export function BuddhistEn() {
   return (

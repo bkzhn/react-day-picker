@@ -12,6 +12,9 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "dependencies": {
+    "@daypicker/buddhist": "workspace:^",
+    "@daypicker/ethiopic": "workspace:^",
+    "@daypicker/hebrew": "workspace:^",
     "@daypicker/hijri": "workspace:^",
     "@daypicker/persian": "workspace:^",
     "react": "^19.2.5",
