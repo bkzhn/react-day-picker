@@ -125,6 +125,56 @@ importers:
         specifier: ^8.0.8
         version: 8.0.8(@types/node@25.6.0)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.1)(yaml@2.8.3)
 
+  packages/buddhist:
+    dependencies:
+      react:
+        specifier: '>=16.8.0'
+        version: 19.2.5
+    devDependencies:
+      react-day-picker:
+        specifier: workspace:*
+        version: link:../..
+
+  packages/ethiopic:
+    dependencies:
+      react:
+        specifier: '>=16.8.0'
+        version: 19.2.5
+    devDependencies:
+      react-day-picker:
+        specifier: workspace:*
+        version: link:../..
+
+  packages/hebrew:
+    dependencies:
+      react:
+        specifier: '>=16.8.0'
+        version: 19.2.5
+    devDependencies:
+      react-day-picker:
+        specifier: workspace:*
+        version: link:../..
+
+  packages/hijri:
+    dependencies:
+      react:
+        specifier: '>=16.8.0'
+        version: 19.2.5
+    devDependencies:
+      react-day-picker:
+        specifier: workspace:*
+        version: link:../..
+
+  packages/persian:
+    dependencies:
+      react:
+        specifier: '>=16.8.0'
+        version: 19.2.5
+    devDependencies:
+      react-day-picker:
+        specifier: workspace:*
+        version: link:../..
+
   shadcn-app-v9:
     dependencies:
       '@radix-ui/react-slot':
