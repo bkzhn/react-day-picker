@@ -9,73 +9,76 @@ export default defineConfig({
     alias: [
       {
         find: "react-day-picker/examples",
-        replacement: path.resolve(__dirname, "../examples/index.ts"),
+        replacement: path.resolve(__dirname, "../../examples/index.ts"),
       },
       {
         find: "react-day-picker/style.css",
         replacement: path.resolve(
           __dirname,
-          "../packages/react-day-picker/src/style.css",
+          "../../packages/react-day-picker/src/style.css",
         ),
       },
       {
         find: "react-day-picker/style.module.css",
         replacement: path.resolve(
           __dirname,
-          "../packages/react-day-picker/src/style.module.css",
+          "../../packages/react-day-picker/src/style.module.css",
         ),
       },
       {
         find: /^react-day-picker\/locale\/(.+)$/,
         replacement: path.resolve(
           __dirname,
-          "../packages/react-day-picker/src/locale/$1.ts",
+          "../../packages/react-day-picker/src/locale/$1.ts",
         ),
       },
       {
         find: /^react-day-picker\/locale$/,
         replacement: path.resolve(
           __dirname,
-          "../packages/react-day-picker/src/locale.ts",
+          "../../packages/react-day-picker/src/locale.ts",
         ),
       },
       {
         find: /^react-day-picker$/,
         replacement: path.resolve(
           __dirname,
-          "../packages/react-day-picker/src/index.ts",
+          "../../packages/react-day-picker/src/index.ts",
         ),
       },
       {
         find: "@daypicker/buddhist",
         replacement: path.resolve(
           __dirname,
-          "../packages/buddhist/src/index.tsx",
+          "../../packages/buddhist/src/index.tsx",
         ),
       },
       {
         find: "@daypicker/ethiopic",
         replacement: path.resolve(
           __dirname,
-          "../packages/ethiopic/src/index.tsx",
+          "../../packages/ethiopic/src/index.tsx",
         ),
       },
       {
         find: "@daypicker/hebrew",
         replacement: path.resolve(
           __dirname,
-          "../packages/hebrew/src/index.tsx",
+          "../../packages/hebrew/src/index.tsx",
         ),
       },
       {
         find: "@daypicker/hijri",
-        replacement: path.resolve(__dirname, "../packages/hijri/src/index.tsx"),
+        replacement: path.resolve(
+          __dirname,
+          "../../packages/hijri/src/index.tsx",
+        ),
       },
       {
         find: "@daypicker/persian",
         replacement: path.resolve(
           __dirname,
-          "../packages/persian/src/index.tsx",
+          "../../packages/persian/src/index.tsx",
         ),
       },
     ],

@@ -10,9 +10,9 @@ const options = {
   watch: process.env.TYPEDOC_WATCH === "true",
   name: "API",
   includeVersion: true,
-  basePath: "../",
-  entryPoints: ["../packages/react-day-picker/src/index.ts"],
-  tsconfig: "../tsconfig-docs.json",
+  basePath: "../../",
+  entryPoints: ["../../packages/react-day-picker/src/index.ts"],
+  tsconfig: "../../tsconfig-docs.json",
   categorizeByGroup: true,
   groupOrder: [
     "DayPicker",

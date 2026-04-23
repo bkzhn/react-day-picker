@@ -6,29 +6,29 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 const nodeRequire = createRequire(import.meta.url);
 const nextDocsVersion = nodeRequire(
-  "../packages/react-day-picker/package.json",
+  "../../packages/react-day-picker/package.json",
 ).version;
 const stableDocsVersion = nodeRequire(
   "react-day-picker-v9/package.json",
 ).version;
-const currentExamplesPath = nodeRequire.resolve("../examples/index.ts");
+const currentExamplesPath = nodeRequire.resolve("../../examples/index.ts");
 const reactDayPickerSrcPath = nodeRequire.resolve(
-  "../packages/react-day-picker/src/index.ts",
+  "../../packages/react-day-picker/src/index.ts",
 );
 const reactDayPickerSrcDir = fileURLToPath(
-  new URL("../packages/react-day-picker/src", import.meta.url),
+  new URL("../../packages/react-day-picker/src", import.meta.url),
 );
 const reactDayPickerLocalePath = nodeRequire.resolve(
-  "../packages/react-day-picker/src/locale.ts",
+  "../../packages/react-day-picker/src/locale.ts",
 );
 const reactDayPickerLocaleDir = fileURLToPath(
-  new URL("../packages/react-day-picker/src/locale", import.meta.url),
+  new URL("../../packages/react-day-picker/src/locale", import.meta.url),
 );
 const reactDayPickerStylePath = nodeRequire.resolve(
-  "../packages/react-day-picker/src/style.css",
+  "../../packages/react-day-picker/src/style.css",
 );
 const reactDayPickerStyleModulePath = nodeRequire.resolve(
-  "../packages/react-day-picker/src/style.module.css",
+  "../../packages/react-day-picker/src/style.module.css",
 );
 
 const config: Config = {
@@ -63,7 +63,8 @@ const config: Config = {
           breadcrumbs: false,
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://github.com/gpbl/react-day-picker/tree/main/website",
+          editUrl:
+            "https://github.com/gpbl/react-day-picker/tree/main/apps/website",
           remarkPlugins: [
             require("@docusaurus/remark-plugin-npm2yarn"),
             [require("remark-github"), { repository: "gpbl/react-day-picker" }],
@@ -92,7 +93,7 @@ const config: Config = {
         blog: false,
         theme: {
           customCss: [
-            "../packages/react-day-picker/src/style.css",
+            "../../packages/react-day-picker/src/style.css",
             "./src/css/site.css",
           ],
         },

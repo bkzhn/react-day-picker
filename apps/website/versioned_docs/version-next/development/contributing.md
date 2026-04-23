@@ -4,6 +4,6 @@ title: Contributing
 sidebar_position: 1
 ---
 
-import Contributing from "../../../CONTRIBUTING.md";
+import Contributing from "../../../../../CONTRIBUTING.md";
 
 <Contributing />
