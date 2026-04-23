@@ -2,40 +2,25 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "typescript",
-      "tsconfig": "tsconfig-esm.json",
-      "option": "watch",
+      "type": "shell",
+      "command": "pnpm --dir packages/react-day-picker exec tsc --project tsconfig-esm.json --watch",
       "problemMatcher": [
         "$tsc-watch"
       ],
       "group": "build",
-      "label": "👀 tsc: watch - tsconfig-esm.json",
+      "label": "👀 pnpm: react-day-picker/watch",
       "detail": "Watch the project in ESM format",
       "runOptions": {
         "runOn": "folderOpen"
       }
     },
     {
-      "type": "npm",
-      "script": "build",
+      "type": "shell",
+      "command": "pnpm build",
       "group": "build",
       "problemMatcher": [],
-      "label": "🔨 npm: build",
+      "label": "🔨 pnpm: build",
       "detail": "Build the project in ESM and CJS format"
-    },
-    {
-      "type": "typescript",
-      "tsconfig": "tsconfig-esm.json",
-      "option": "watch",
-      "problemMatcher": [
-        "$tsc-watch"
-      ],
-      "group": "build",
-      "label": "⏯️ tsc: watch",
-      "detail": "Watch the project in ESM format",
-      "runOptions": {
-        "runOn": "folderOpen"
-      }
     },
     {
       "label": "🧹 format and lint",
