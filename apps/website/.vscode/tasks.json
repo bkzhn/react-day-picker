@@ -2,21 +2,21 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "npm",
-      "script": "start",
+      "type": "shell",
+      "command": "pnpm start",
       "problemMatcher": [],
-      "label": "⏯️ npm: website/start",
+      "label": "⏯️ pnpm: website/start",
       "detail": "Run the docusaurus website",
       "runOptions": {
         "runOn": "folderOpen"
       }
     },
     {
-      "type": "npm",
-      "script": "build",
+      "type": "shell",
+      "command": "pnpm build",
       "group": "build",
       "problemMatcher": [],
-      "label": "🔨 npm: build",
+      "label": "🔨 pnpm: build",
       "detail": "docusaurus build"
     }
   ]
