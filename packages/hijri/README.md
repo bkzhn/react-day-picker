@@ -6,10 +6,15 @@ This package renders DayPicker with Umm al-Qura Hijri calendar month and year
 logic. It uses the Arabic Saudi Arabia locale, Arabic-Indic numerals, and
 right-to-left direction by default.
 
+<a href="https://www.npmjs.com/package/@daypicker/hijri"><img src="https://img.shields.io/npm/v/%40daypicker%2Fhijri" alt="npm version"/></a> <img src="https://img.shields.io/npm/dm/%40daypicker%2Fhijri.svg" alt="npm downloads"/> <img src="https://img.shields.io/bundlephobia/minzip/%40daypicker%2Fhijri" alt="Min gzipped size"/>
+
 ## Installation
 
+Install the v10 prerelease of React DayPicker together with the Hijri calendar
+package:
+
 ```bash
-npm install react-day-picker @daypicker/hijri
+npm install react-day-picker@next @daypicker/hijri@next
 ```
 
 ## Usage
@@ -33,8 +38,8 @@ install `react` and `react-day-picker`.
 
 ## Documentation
 
-- [Hijri calendar guide](https://daypicker.dev/localization/hijri)
-- [React DayPicker documentation](https://daypicker.dev)
+- [Hijri calendar guide](https://daypicker.dev/next/localization/hijri)
+- [React DayPicker v10 docs](https://daypicker.dev/next)
 - [Issues and support](https://github.com/gpbl/react-day-picker/issues)
 
 ## License
