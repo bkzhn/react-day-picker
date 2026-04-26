@@ -31,6 +31,13 @@ DayPicker is written in TypeScript and compiled to CommonJS and ESM. It relies o
 npm install react-day-picker
 ```
 
+If you are trying the v10 prereleases with one of the alternative calendar
+integrations, install both packages together. For example:
+
+```bash
+npm install react-day-picker@next @daypicker/persian@next
+```
+
 <a href="https://www.npmjs.com/package/react-day-picker"><img src="https://img.shields.io/npm/v/react-day-picker" alt="npm version"/></a> <img src="https://img.shields.io/npm/dm/react-day-picker.svg" alt="npm downloads"/> <img src="https://img.shields.io/bundlephobia/minzip/react-day-picker" alt="Min gzipped size"/>
 
 ## Example
