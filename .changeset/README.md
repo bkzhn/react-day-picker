@@ -37,5 +37,12 @@ Publishing runs from [`.github/workflows/release.yml`](../.github/workflows/rele
 - `workflow_dispatch` can rerun `release:ci` for recovery by targeting the
   merged release PR commit SHA or another ref that resolves to that commit
 
+Recovery note: if npm publish succeeds but the repo GitHub Release is missing,
+rerunning `release:ci` is safe and should reuse the published npm versions.
+GitHub may still reject creating a missing release for an older recovery commit
+with `Resource not accessible by integration`. In that case, create the GitHub
+Release manually for that historical commit and rerun the workflow to confirm
+the release now exists.
+
 Trusted publishing for the public packages should point at the `release.yml`
 workflow file on GitHub.

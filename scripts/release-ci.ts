@@ -99,6 +99,9 @@ export async function releaseCi(): Promise<{
     console.log("All publishable package versions are already on npm.");
   }
 
+  // Recovery runs are idempotent, but GitHub may reject backfilling a missing
+  // release for an older target commit with GITHUB_TOKEN even when the normal
+  // publish path on the current release commit works.
   const releaseResult = await createGitHubRelease({
     repository,
     token,
