@@ -46,3 +46,16 @@ the release now exists.
 
 Trusted publishing for the public packages should point at the `release.yml`
 workflow file on GitHub.
+
+## Writing changesets
+
+Release notes are generated from the changeset summaries that land in package
+changelogs. Keep the summary short, consumer-facing, and prefixed with the type
+of change when possible:
+
+- `feat: add support for custom weekday abbreviations.`
+- `fix: preserve the selected range when navigating with the keyboard.`
+- `docs: clarify the public useCalendar API documentation.`
+
+That makes the repo GitHub Release notes read more cleanly once the summary is
+rendered ahead of the PR link and contributor attribution.
