@@ -1,6 +1,4 @@
-/**
- * Reads the pull requests GitHub associates with the given commit SHA.
- */
+/** Reads the pull requests GitHub associates with the given commit SHA. */
 async function fetchAssociatedPullRequests(request: {
   owner: string;
   repo: string;
@@ -45,8 +43,8 @@ async function fetchAssociatedPullRequests(request: {
 }
 
 /**
- * Returns true only when the commit belongs to the merged Changesets release
- * PR for this repo.
+ * Returns true only when the commit belongs to the merged Changesets release PR
+ * for this repo.
  *
  * This protects the publish step from running on arbitrary pushes to `main`.
  */

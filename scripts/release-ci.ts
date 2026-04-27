@@ -32,9 +32,10 @@ const validationCommands = [
  * publishable.
  *
  * The flow is:
- * 1. verify that the current commit came from the merged release PR
- * 2. publish any package versions that are still missing on npm
- * 3. ensure the repo-level GitHub Release exists for that version
+ *
+ * 1. Verify that the current commit came from the merged release PR
+ * 2. Publish any package versions that are still missing on npm
+ * 3. Ensure the repo-level GitHub Release exists for that version
  */
 export async function releaseCi(): Promise<{
   shouldPublish: boolean;
@@ -116,9 +117,7 @@ export async function releaseCi(): Promise<{
   };
 }
 
-/**
- * CLI entrypoint used by the release workflow and manual recovery runs.
- */
+/** CLI entrypoint used by the release workflow and manual recovery runs. */
 async function main(): Promise<void> {
   const result = await releaseCi();
   if (!result.shouldPublish) {

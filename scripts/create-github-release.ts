@@ -61,9 +61,7 @@ async function fetchGitHub(
   throw lastError;
 }
 
-/**
- * Reads the GitHub Release for the version tag if it already exists.
- */
+/** Reads the GitHub Release for the version tag if it already exists. */
 async function fetchReleaseByTag(request: {
   owner: string;
   repo: string;
@@ -105,9 +103,7 @@ async function fetchReleaseByTag(request: {
   }>;
 }
 
-/**
- * Creates the repo-level GitHub Release after npm publish succeeds.
- */
+/** Creates the repo-level GitHub Release after npm publish succeeds. */
 async function createRelease(request: {
   owner: string;
   repo: string;

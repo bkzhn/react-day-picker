@@ -2,25 +2,165 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "shell",
-      "command": "pnpm --dir packages/react-day-picker exec tsc --project tsconfig-esm.json --watch",
-      "problemMatcher": [
-        "$tsc-watch"
+      "label": "👀 pnpm: packages/watch",
+      "detail": "Watch all packages in ESM format",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "👀 pnpm: buddhist/watch",
+        "👀 pnpm: ethiopic/watch",
+        "👀 pnpm: hebrew/watch",
+        "👀 pnpm: hijri/watch",
+        "👀 pnpm: persian/watch",
+        "👀 pnpm: react-day-picker/watch"
       ],
       "group": "build",
-      "label": "👀 pnpm: react-day-picker/watch",
-      "detail": "Watch the project in ESM format",
       "runOptions": {
         "runOn": "folderOpen"
       }
     },
     {
       "type": "shell",
-      "command": "pnpm build",
+      "command": "pnpm -r --filter \"./packages/*\" build",
       "group": "build",
       "problemMatcher": [],
-      "label": "🔨 pnpm: build",
-      "detail": "Build the project in ESM and CJS format"
+      "label": "🔨 pnpm: packages/build",
+      "detail": "Build all packages in ESM and CJS format"
+    },
+    {
+      "label": "👀 pnpm: buddhist/watch",
+      "detail": "Watch @daypicker/buddhist in ESM format",
+      "type": "shell",
+      "command": "pnpm exec tsc --project tsconfig-esm.json --watch",
+      "options": {
+        "cwd": "${workspaceFolder}/packages/buddhist"
+      },
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "hide": true
+    },
+    {
+      "label": "👀 pnpm: ethiopic/watch",
+      "detail": "Watch @daypicker/ethiopic in ESM format",
+      "type": "shell",
+      "command": "pnpm exec tsc --project tsconfig-esm.json --watch",
+      "options": {
+        "cwd": "${workspaceFolder}/packages/ethiopic"
+      },
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "hide": true
+    },
+    {
+      "label": "👀 pnpm: hebrew/watch",
+      "detail": "Watch @daypicker/hebrew in ESM format",
+      "type": "shell",
+      "command": "pnpm exec tsc --project tsconfig-esm.json --watch",
+      "options": {
+        "cwd": "${workspaceFolder}/packages/hebrew"
+      },
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "hide": true
+    },
+    {
+      "label": "👀 pnpm: hijri/watch",
+      "detail": "Watch @daypicker/hijri in ESM format",
+      "type": "shell",
+      "command": "pnpm exec tsc --project tsconfig-esm.json --watch",
+      "options": {
+        "cwd": "${workspaceFolder}/packages/hijri"
+      },
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "hide": true
+    },
+    {
+      "label": "👀 pnpm: persian/watch",
+      "detail": "Watch @daypicker/persian in ESM format",
+      "type": "shell",
+      "command": "pnpm exec tsc --project tsconfig-esm.json --watch",
+      "options": {
+        "cwd": "${workspaceFolder}/packages/persian"
+      },
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "hide": true
+    },
+    {
+      "label": "👀 pnpm: react-day-picker/watch",
+      "detail": "Watch react-day-picker in ESM format",
+      "type": "shell",
+      "command": "pnpm exec tsc --project tsconfig-esm.json --watch",
+      "options": {
+        "cwd": "${workspaceFolder}/packages/react-day-picker"
+      },
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "hide": true
+    },
+    {
+      "label": "✅ pnpm: typecheck",
+      "detail": "Typecheck the root workspace and packages",
+      "type": "shell",
+      "command": "pnpm typecheck",
+      "group": "build",
+      "problemMatcher": [
+        "$tsc"
+      ]
+    },
+    {
+      "label": "🧪 pnpm: test",
+      "detail": "Run all Jest test projects",
+      "type": "shell",
+      "command": "pnpm test",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🧪 pnpm: test-watch",
+      "detail": "Run Jest in watch mode",
+      "type": "shell",
+      "command": "pnpm test-watch",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "🕒 pnpm: test:tz",
+      "detail": "Run timezone-specific Jest tests",
+      "type": "shell",
+      "command": "pnpm test:tz",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "🚀 pnpm: examples-app/dev",
+      "detail": "Run the Vite examples app",
+      "type": "shell",
+      "command": "pnpm --filter examples-app run dev",
+      "problemMatcher": []
+    },
+    {
+      "label": "📚 pnpm: website/start",
+      "detail": "Run the Docusaurus documentation site",
+      "type": "shell",
+      "command": "pnpm --filter website run start",
+      "problemMatcher": []
+    },
+    {
+      "label": "📦 pnpm: pack:dry-run",
+      "detail": "Inspect package files that would ship",
+      "type": "shell",
+      "command": "pnpm pack:dry-run",
+      "problemMatcher": []
     },
     {
       "label": "🧹 format and lint",
