@@ -35,7 +35,7 @@ Install the preferred DayPicker package name:
 npm install @daypicker/react@next
 ```
 
-<a href="https://www.npmjs.com/package/@daypicker/react"><img src="https://img.shields.io/npm/v/%40daypicker%2Freact" alt="npm version"/></a> <img src="https://img.shields.io/npm/dm/%40daypicker%2Freact.svg" alt="npm downloads"/> <img src="https://img.shields.io/bundlephobia/minzip/%40daypicker%2Freact" alt="Min gzipped size"/>
+<a href="https://www.npmjs.com/package/@daypicker/react"><img src="https://img.shields.io/npm/v/%40daypicker%2Freact" alt="npm version"/></a> <img src="https://img.shields.io/npm/dm/react-day-picker.svg" alt="npm downloads"/> <img src="https://img.shields.io/bundlephobia/minzip/%40daypicker%2Freact" alt="Min gzipped size"/>
 
 ## Example
 
