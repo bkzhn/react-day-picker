@@ -1,6 +1,6 @@
-import { render } from "@testing-library/react";
 import React from "react";
 import { nextButton, previousButton } from "@/test/elements";
+import { render } from "@/test/render";
 import { setTestTime } from "@/test/setTestTime";
 import { user } from "@/test/user";
 import { DayPicker } from "./DayPicker";
@@ -26,161 +26,346 @@ const getMonthWeeksContainers = () => [
 
 describe("useAnimation", () => {
   describe("animate prop is falsy", () => {
-    it("should not render elements with data-animated-* attributes", () => {
+    beforeEach(() => {
       render(<DayPicker />);
+    });
 
+    test("does not render animated month containers", () => {
       expect(getMonthContainers()).toHaveLength(0);
+    });
+
+    test("does not render animated caption containers", () => {
       expect(getMonthCaptionContainers()).toHaveLength(0);
+    });
+
+    test("does not render animated weekday containers", () => {
       expect(getMonthWeekdaysContainers()).toHaveLength(0);
+    });
+
+    test("does not render animated week containers", () => {
       expect(getMonthWeeksContainers()).toHaveLength(0);
     });
   });
 
   describe("animate prop is true", () => {
-    it("should render elements with data-animated-* attributes", () => {
-      render(<DayPicker animate={true} numberOfMonths={2} />);
+    describe("when rendering two months", () => {
+      beforeEach(() => {
+        render(<DayPicker animate={true} numberOfMonths={2} />);
+      });
 
-      expect(getMonthContainers()).toHaveLength(2);
-      expect(getMonthCaptionContainers()).toHaveLength(2);
-      expect(getMonthWeekdaysContainers()).toHaveLength(2);
-      expect(getMonthWeeksContainers()).toHaveLength(2);
+      test("renders two animated month containers", () => {
+        expect(getMonthContainers()).toHaveLength(2);
+      });
+
+      test("renders two animated caption containers", () => {
+        expect(getMonthCaptionContainers()).toHaveLength(2);
+      });
+
+      test("renders two animated weekday containers", () => {
+        expect(getMonthWeekdaysContainers()).toHaveLength(2);
+      });
+
+      test("renders two animated week containers", () => {
+        expect(getMonthWeeksContainers()).toHaveLength(2);
+      });
+
+      describe("when navigating to the next month", () => {
+        beforeEach(async () => {
+          await user.click(nextButton());
+        });
+
+        test("keeps snapshots for four animated month containers", () => {
+          expect(getMonthContainers()).toHaveLength(4);
+        });
+
+        test("keeps snapshots for four animated caption containers", () => {
+          expect(getMonthCaptionContainers()).toHaveLength(4);
+        });
+
+        test("keeps snapshots for four animated weekday containers", () => {
+          expect(getMonthWeekdaysContainers()).toHaveLength(4);
+        });
+
+        test("keeps snapshots for four animated week containers", () => {
+          expect(getMonthWeeksContainers()).toHaveLength(4);
+        });
+      });
     });
 
-    it("should add dom snapshots for each month for animation", async () => {
-      render(<DayPicker animate={true} numberOfMonths={2} />);
+    describe("when navigating while a month is exiting", () => {
+      beforeEach(async () => {
+        render(<DayPicker animate={true} />);
+        await user.click(nextButton());
+      });
 
-      await user.click(nextButton());
+      test("keeps February as the exiting month", () => {
+        expect(getMonthCaptionContainers()[0]).toHaveTextContent(
+          "February 2025",
+        );
+      });
 
-      expect(getMonthContainers()).toHaveLength(4);
-      expect(getMonthCaptionContainers()).toHaveLength(4);
-      expect(getMonthWeekdaysContainers()).toHaveLength(4);
-      expect(getMonthWeeksContainers()).toHaveLength(4);
+      test("shows March as the entering month", () => {
+        expect(getMonthCaptionContainers()[1]).toHaveTextContent("March 2025");
+      });
+
+      describe("when navigating again", () => {
+        beforeEach(async () => {
+          await user.click(nextButton());
+        });
+
+        test("keeps February as the exiting month", () => {
+          expect(getMonthCaptionContainers()[0]).toHaveTextContent(
+            "February 2025",
+          );
+        });
+
+        test("shows April as the entering month", () => {
+          expect(getMonthCaptionContainers()[1]).toHaveTextContent(
+            "April 2025",
+          );
+        });
+      });
     });
 
-    it("should continue animating the same exiting month if month changed during animation", async () => {
-      render(<DayPicker animate={true} />);
+    describe("when navigating after a previous animation ends", () => {
+      beforeEach(async () => {
+        render(<DayPicker animate={true} />);
+        await user.click(nextButton());
+        await user.click(nextButton());
 
-      await user.click(nextButton());
+        const animationEndEvent = new Event("animationend");
+        getMonthCaptionContainers()[0].dispatchEvent(animationEndEvent);
 
-      expect(getMonthCaptionContainers()[0]).toHaveTextContent("February 2025");
-      expect(getMonthCaptionContainers()[1]).toHaveTextContent("March 2025");
+        await user.click(nextButton());
+      });
 
-      await user.click(nextButton());
+      test("shows April as the exiting month", () => {
+        expect(getMonthCaptionContainers()[0]).toHaveTextContent("April 2025");
+      });
 
-      expect(getMonthCaptionContainers()[0]).toHaveTextContent("February 2025");
-      expect(getMonthCaptionContainers()[1]).toHaveTextContent("April 2025");
+      test("shows May as the entering month", () => {
+        expect(getMonthCaptionContainers()[1]).toHaveTextContent("May 2025");
+      });
+
+      test("renders two animated month containers", () => {
+        expect(getMonthContainers()).toHaveLength(2);
+      });
+
+      test("renders two animated caption containers", () => {
+        expect(getMonthCaptionContainers()).toHaveLength(2);
+      });
+
+      test("renders two animated weekday containers", () => {
+        expect(getMonthWeekdaysContainers()).toHaveLength(2);
+      });
+
+      test("renders two animated week containers", () => {
+        expect(getMonthWeeksContainers()).toHaveLength(2);
+      });
+
+      test("clears the previous caption enter class", () => {
+        expect(getMonthCaptionContainers()[0]).not.toHaveClass(
+          "rdp-caption_after_enter",
+        );
+      });
+
+      test("clears the previous weeks enter class", () => {
+        expect(getMonthWeeksContainers()[0]).not.toHaveClass(
+          "rdp-weeks_after_enter",
+        );
+      });
     });
 
-    it("should handle month changes during animation to correctly animate the next month change", async () => {
-      render(<DayPicker animate={true} />);
-      await user.click(nextButton());
-      await user.click(nextButton());
+    describe("when entering month is after the exiting month", () => {
+      beforeEach(async () => {
+        render(<DayPicker animate={true} />);
+        await user.click(nextButton());
+      });
 
-      const animationEndEvent = new Event("animationend");
-      getMonthCaptionContainers()[0].dispatchEvent(animationEndEvent);
+      test("marks the exiting caption before exit", () => {
+        expect(getMonthCaptionContainers()[0]).toHaveClass(
+          "rdp-caption_before_exit",
+        );
+      });
 
-      await user.click(nextButton());
+      test("marks the entering caption after enter", () => {
+        expect(getMonthCaptionContainers()[1]).toHaveClass(
+          "rdp-caption_after_enter",
+        );
+      });
 
-      expect(getMonthCaptionContainers()[0]).toHaveTextContent("April 2025");
-      expect(getMonthCaptionContainers()[1]).toHaveTextContent("May 2025");
-      expect(getMonthContainers()).toHaveLength(2);
-      expect(getMonthCaptionContainers()).toHaveLength(2);
-      expect(getMonthWeekdaysContainers()).toHaveLength(2);
-      expect(getMonthWeeksContainers()).toHaveLength(2);
-      expect(getMonthCaptionContainers()[0]).not.toHaveClass(
-        "rdp-caption_after_enter",
-      );
-      expect(getMonthWeeksContainers()[0]).not.toHaveClass(
-        "rdp-weeks_after_enter",
-      );
+      test("marks the exiting weeks before exit", () => {
+        expect(getMonthWeeksContainers()[0]).toHaveClass(
+          "rdp-weeks_before_exit",
+        );
+      });
+
+      test("marks the entering weeks after enter", () => {
+        expect(getMonthWeeksContainers()[1]).toHaveClass(
+          "rdp-weeks_after_enter",
+        );
+      });
     });
 
-    it("should apply the correct animation class when entering month is after the exiting month", async () => {
-      render(<DayPicker animate={true} />);
+    describe("when entering month is before the exiting month", () => {
+      beforeEach(async () => {
+        render(<DayPicker animate={true} />);
+        await user.click(previousButton());
+      });
 
-      await user.click(nextButton());
+      test("marks the exiting caption after exit", () => {
+        expect(getMonthCaptionContainers()[0]).toHaveClass(
+          "rdp-caption_after_exit",
+        );
+      });
 
-      expect(getMonthCaptionContainers()[0]).toHaveClass(
-        "rdp-caption_before_exit",
-      );
-      expect(getMonthCaptionContainers()[1]).toHaveClass(
-        "rdp-caption_after_enter",
-      );
+      test("marks the entering caption before enter", () => {
+        expect(getMonthCaptionContainers()[1]).toHaveClass(
+          "rdp-caption_before_enter",
+        );
+      });
 
-      expect(getMonthWeeksContainers()[0]).toHaveClass("rdp-weeks_before_exit");
-      expect(getMonthWeeksContainers()[1]).toHaveClass("rdp-weeks_after_enter");
+      test("marks the exiting weeks after exit", () => {
+        expect(getMonthWeeksContainers()[0]).toHaveClass(
+          "rdp-weeks_after_exit",
+        );
+      });
+
+      test("marks the entering weeks before enter", () => {
+        expect(getMonthWeeksContainers()[1]).toHaveClass(
+          "rdp-weeks_before_enter",
+        );
+      });
     });
 
-    it("should apply the correct animation class when entering month is before the exiting month", async () => {
-      render(<DayPicker animate={true} />);
+    describe("when a month is exiting", () => {
+      beforeEach(async () => {
+        render(<DayPicker animate={true} />);
+        await user.click(nextButton());
+      });
 
-      await user.click(previousButton());
+      test("renders two animated nav containers", () => {
+        expect(getNavContainers()).toHaveLength(2);
+      });
 
-      expect(getMonthCaptionContainers()[0]).toHaveClass(
-        "rdp-caption_after_exit",
-      );
-      expect(getMonthCaptionContainers()[1]).toHaveClass(
-        "rdp-caption_before_enter",
-      );
+      test("renders two animated month containers", () => {
+        expect(getMonthContainers()).toHaveLength(2);
+      });
 
-      expect(getMonthWeeksContainers()[0]).toHaveClass("rdp-weeks_after_exit");
-      expect(getMonthWeeksContainers()[1]).toHaveClass(
-        "rdp-weeks_before_enter",
-      );
-    });
+      test("renders two animated caption containers", () => {
+        expect(getMonthCaptionContainers()).toHaveLength(2);
+      });
 
-    it("should clean up the exiting month after animation ends", async () => {
-      render(<DayPicker animate={true} />);
+      test("renders two animated weekday containers", () => {
+        expect(getMonthWeekdaysContainers()).toHaveLength(2);
+      });
 
-      await user.click(nextButton());
+      test("renders two animated week containers", () => {
+        expect(getMonthWeeksContainers()).toHaveLength(2);
+      });
 
-      let navContainers = getNavContainers();
-      let monthContainers = getMonthContainers();
-      let monthCaptionContainers = getMonthCaptionContainers();
-      let monthWeekdaysContainers = getMonthWeekdaysContainers();
-      let monthWeeksContainers = getMonthWeeksContainers();
+      test("isolates the root container", () => {
+        expect(getRootContainer()).toHaveStyle("isolation: isolate");
+      });
 
-      expect(navContainers).toHaveLength(2);
-      expect(monthContainers).toHaveLength(2);
-      expect(monthCaptionContainers).toHaveLength(2);
-      expect(monthWeekdaysContainers).toHaveLength(2);
-      expect(monthWeeksContainers).toHaveLength(2);
+      test("places the entering nav container above the exiting nav container", () => {
+        expect(getNavContainers()[1]).toHaveStyle("z-index: 1");
+      });
 
-      expect(getRootContainer()).toHaveStyle("isolation: isolate");
-      expect(navContainers[1]).toHaveStyle("z-index: 1");
-      expect(monthContainers[0]).toHaveStyle("position: relative");
-      expect(monthContainers[0]).toHaveStyle("overflow: hidden");
-      expect(monthContainers[1]).toHaveStyle("overflow: hidden");
-      expect(monthContainers[1]).toHaveStyle("pointer-events: none");
-      expect(monthContainers[1]).toHaveStyle("position: absolute");
-      expect(monthContainers[1]).toHaveAttribute("aria-hidden", "true");
-      expect(monthWeekdaysContainers[0]).toHaveStyle("opacity: 0");
-      expect(monthCaptionContainers[1]).toHaveClass("rdp-caption_after_enter");
-      expect(monthWeeksContainers[1]).toHaveClass("rdp-weeks_after_enter");
+      test("positions the exiting month container relatively", () => {
+        expect(getMonthContainers()[0]).toHaveStyle("position: relative");
+      });
 
-      const animationEndEvent = new Event("animationend");
-      getMonthCaptionContainers()[0].dispatchEvent(animationEndEvent);
+      test("hides overflow for the exiting month container", () => {
+        expect(getMonthContainers()[0]).toHaveStyle("overflow: hidden");
+      });
 
-      navContainers = getNavContainers();
-      monthContainers = getMonthContainers();
-      monthCaptionContainers = getMonthCaptionContainers();
-      monthWeekdaysContainers = getMonthWeekdaysContainers();
-      monthWeeksContainers = getMonthWeeksContainers();
+      test("hides overflow for the entering month container", () => {
+        expect(getMonthContainers()[1]).toHaveStyle("overflow: hidden");
+      });
 
-      expect(navContainers).toHaveLength(1);
-      expect(monthContainers).toHaveLength(1);
-      expect(monthCaptionContainers).toHaveLength(1);
-      expect(monthWeekdaysContainers).toHaveLength(1);
-      expect(monthWeeksContainers).toHaveLength(1);
+      test("disables pointer events for the entering month container", () => {
+        expect(getMonthContainers()[1]).toHaveStyle("pointer-events: none");
+      });
 
-      expect(getRootContainer()).not.toHaveStyle("isolation: isolate");
-      expect(navContainers[0]).not.toHaveStyle("z-index: 1");
-      expect(monthContainers[0]).not.toHaveStyle("position: relative");
-      expect(monthContainers[0]).not.toHaveStyle("overflow: hidden");
-      expect(monthCaptionContainers[0]).not.toHaveClass(
-        "rdp-caption_after_enter",
-      );
-      expect(monthWeeksContainers[0]).not.toHaveClass("rdp-weeks_after_enter");
+      test("positions the entering month container absolutely", () => {
+        expect(getMonthContainers()[1]).toHaveStyle("position: absolute");
+      });
+
+      test("hides the entering month from assistive technology", () => {
+        expect(getMonthContainers()[1]).toHaveAttribute("aria-hidden", "true");
+      });
+
+      test("hides the exiting weekday container", () => {
+        expect(getMonthWeekdaysContainers()[0]).toHaveStyle("opacity: 0");
+      });
+
+      test("marks the entering caption after enter", () => {
+        expect(getMonthCaptionContainers()[1]).toHaveClass(
+          "rdp-caption_after_enter",
+        );
+      });
+
+      test("marks the entering weeks after enter", () => {
+        expect(getMonthWeeksContainers()[1]).toHaveClass(
+          "rdp-weeks_after_enter",
+        );
+      });
+
+      describe("when the animation ends", () => {
+        beforeEach(() => {
+          const animationEndEvent = new Event("animationend");
+          getMonthCaptionContainers()[0].dispatchEvent(animationEndEvent);
+        });
+
+        test("keeps one animated nav container", () => {
+          expect(getNavContainers()).toHaveLength(1);
+        });
+
+        test("keeps one animated month container", () => {
+          expect(getMonthContainers()).toHaveLength(1);
+        });
+
+        test("keeps one animated caption container", () => {
+          expect(getMonthCaptionContainers()).toHaveLength(1);
+        });
+
+        test("keeps one animated weekday container", () => {
+          expect(getMonthWeekdaysContainers()).toHaveLength(1);
+        });
+
+        test("keeps one animated week container", () => {
+          expect(getMonthWeeksContainers()).toHaveLength(1);
+        });
+
+        test("clears root isolation", () => {
+          expect(getRootContainer()).not.toHaveStyle("isolation: isolate");
+        });
+
+        test("clears nav stacking", () => {
+          expect(getNavContainers()[0]).not.toHaveStyle("z-index: 1");
+        });
+
+        test("clears relative month positioning", () => {
+          expect(getMonthContainers()[0]).not.toHaveStyle("position: relative");
+        });
+
+        test("clears month overflow clipping", () => {
+          expect(getMonthContainers()[0]).not.toHaveStyle("overflow: hidden");
+        });
+
+        test("clears the caption enter class", () => {
+          expect(getMonthCaptionContainers()[0]).not.toHaveClass(
+            "rdp-caption_after_enter",
+          );
+        });
+
+        test("clears the weeks enter class", () => {
+          expect(getMonthWeeksContainers()[0]).not.toHaveClass(
+            "rdp-weeks_after_enter",
+          );
+        });
+      });
     });
   });
 });
