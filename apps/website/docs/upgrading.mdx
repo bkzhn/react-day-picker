@@ -4,39 +4,27 @@ sidebar_position: 5
 
 # Upgrading to v9
 
-DayPicker v9 includes significant updates to accessibility, styles,
-internationalization, and performance. If your app is on v8, you can usually
-upgrade in one pass by updating the package, CSS imports, controlled selection,
-custom styles, and any custom components.
+DayPicker v9 includes significant updates to accessibility, styles, internationalization, and performance. If your app is on v8, you can usually upgrade in one pass by updating the package, CSS imports, controlled selection, custom styles, and any custom components.
 
 See the [changelog](./changelog.mdx) for the full list of changes.
 
 ## Upgrading from v7
 
-If you are upgrading from v7 or earlier, first follow the
-[migration guide from v7 to v8](/v8/upgrading), then follow this guide.
+If you are upgrading from v7 or earlier, first follow the [migration guide from v7 to v8](/v8/upgrading), then follow this guide.
 
 ## Upgrade checklist
 
 Most apps can migrate in this order:
 
-1. [Upgrade the package](#1-upgrade-the-package): install the latest
-   `react-day-picker` package.
-2. [Update CSS imports and styles](#2-update-css-imports-and-styles): replace
-   v8 CSS imports, CSS variables, class names, and `styles` keys.
-3. [Add `onSelect` when using `selected`](#3-add-onselect-when-using-selected):
-   make controlled selections explicit.
-4. [Replace navigation boundary props](#4-replace-navigation-boundary-props):
-   move from `from*` and `to*` props to `startMonth`, `endMonth`, and `hidden`.
-5. [Update custom components](#5-update-custom-components): replace renamed
-   component slots.
-6. [Update formatters, labels, and tests](#6-update-formatters-labels-and-tests):
-   return strings from formatters and update ARIA label overrides or assertions.
-7. [Replace deprecated aliases and types](#7-replace-deprecated-aliases-and-types):
-   remove names kept only for compatibility.
+1. [Upgrade the package](#1-upgrade-the-package): install the latest `react-day-picker` package.
+2. [Update CSS imports and styles](#2-update-css-imports-and-styles): replace v8 CSS imports, CSS variables, class names, and `styles` keys.
+3. [Add `onSelect` when using `selected`](#3-add-onselect-when-using-selected): make controlled selections explicit.
+4. [Replace navigation boundary props](#4-replace-navigation-boundary-props): move from `from*` and `to*` props to `startMonth`, `endMonth`, and `hidden`.
+5. [Update custom components](#5-update-custom-components): replace renamed component slots.
+6. [Update formatters, labels, and tests](#6-update-formatters-labels-and-tests): return strings from formatters and update ARIA label overrides or assertions.
+7. [Replace deprecated aliases and types](#7-replace-deprecated-aliases-and-types): remove names kept only for compatibility.
 
-If your app wraps DayPicker in a shared `Calendar` or `DatePicker` component,
-update that wrapper first, then check the screens that use it.
+If your app wraps DayPicker in a shared `Calendar` or `DatePicker` component, update that wrapper first, then check the screens that use it.
 
 ## 1. Upgrade the package
 
@@ -46,9 +34,7 @@ Install the latest v9 release:
 npm install react-day-picker@latest
 ```
 
-If your app installed `date-fns` only because v8 required it as a peer
-dependency, you can remove it. Keep `date-fns` if you use it directly, for
-example for formatting dates or passing locales from `date-fns/locale`.
+If your app installed `date-fns` only because v8 required it as a peer dependency, you can remove it. Keep `date-fns` if you use it directly, for example for formatting dates or passing locales from `date-fns/locale`.
 
 ```bash npm2yarn
 npm remove date-fns
@@ -70,17 +56,12 @@ If you import the CSS module, update that import path as well:
 + import classNames from "react-day-picker/style.module.css";
 ```
 
-The default CSS and the rendered markup changed in v9. If you only import
-DayPicker's default CSS and do not override it, updating the CSS import path may
-be enough. If your app has custom CSS selectors, CSS variables, `classNames`, or
-`styles`, review them carefully.
+The default CSS and the rendered markup changed in v9. If you only import DayPicker's default CSS and do not override it, updating the CSS import path may be enough. If your app has custom CSS selectors, CSS variables, `classNames`, or `styles`, review them carefully.
 
 Common style updates:
 
-- CSS variables are now scoped under `.rdp-root`. Move overrides there if they
-  were previously set on `:root` or `.rdp`.
-- The old `day` element is now `day_button`; the old `cell` element is now
-  `day`.
+- CSS variables are now scoped under `.rdp-root`. Move overrides there if they were previously set on `:root` or `.rdp`.
+- The old `day` element is now `day_button`; the old `cell` element is now `day`.
 - Class names for several UI elements and day states changed.
 
 Example class name prop update:
@@ -173,9 +154,7 @@ See the current class name keys in the [`UI`](./api/enumerations/UI.md) enum.
 
 ## 3. Add `onSelect` when using `selected`
 
-When you pass `selected`, DayPicker expects you to handle selection changes with
-`onSelect`. Add state in your component and pass the state setter or a custom
-handler.
+When you pass `selected`, DayPicker expects you to handle selection changes with `onSelect`. Add state in your component and pass the state setter or a custom handler.
 
 ```diff
 + const [selected, setSelected] = useState<Date | undefined>(undefined);
@@ -195,13 +174,11 @@ const [range, setRange] = useState<DateRange | undefined>();
 <DayPicker mode="range" selected={range} onSelect={setRange} />;
 ```
 
-If you only need to mark days visually and do not want DayPicker to manage a
-selection mode, use custom modifiers instead of `selected`.
+If you only need to mark days visually and do not want DayPicker to manage a selection mode, use custom modifiers instead of `selected`.
 
 ## 4. Replace navigation boundary props
 
-The old navigation boundary props are deprecated in v9. Replace them with
-`startMonth`, `endMonth`, and `hidden` so your app is ready for v10.
+The old navigation boundary props are deprecated in v9. Replace them with `startMonth`, `endMonth`, and `hidden` so your app is ready for v10.
 
 | Deprecated prop | Use instead                                                   |
 | --------------- | ------------------------------------------------------------- |
@@ -252,8 +229,7 @@ Replace date boundaries:
 />
 ```
 
-Use both `startMonth` or `endMonth` and `hidden` when you need to limit
-navigation and hide individual days outside the allowed range.
+Use both `startMonth` or `endMonth` and `hidden` when you need to limit navigation and hide individual days outside the allowed range.
 
 ## 5. Update custom components
 
@@ -297,8 +273,7 @@ See the [custom components guide](./guides/custom-components.mdx) for details.
 
 ## 6. Update formatters, labels, and tests
 
-Formatters now return strings. If a v8 formatter returned a React element, move
-the React rendering into a custom component.
+Formatters now return strings. If a v8 formatter returned a React element, move the React rendering into a custom component.
 
 ```diff
 <DayPicker
@@ -335,8 +310,7 @@ Rename formatter and label aliases:
 | `labelDay`           | `labelDayButton`     |
 | `labelCaption`       | `labelGrid`          |
 
-DayPicker's ARIA labels changed for accessibility. Update label overrides,
-translations, and tests that query buttons by accessible name.
+DayPicker's ARIA labels changed for accessibility. Update label overrides, translations, and tests that query buttons by accessible name.
 
 | Label             | Old label                | New label                                                                                                  |
 | ----------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------- |
@@ -354,8 +328,7 @@ Update test selectors as needed:
 
 ## 7. Replace deprecated aliases and types
 
-Several v8 names still work in v9 for compatibility, but they are deprecated.
-Replace them with the current names before upgrading to v10.
+Several v8 names still work in v9 for compatibility, but they are deprecated. Replace them with the current names before upgrading to v10.
 
 ### Deprecated utility aliases
 
@@ -366,8 +339,7 @@ Replace them with the current names before upgrading to v10.
 
 ### Deprecated TypeScript names
 
-If you use TypeScript, replace deprecated v8 type names with the shorter current
-names.
+If you use TypeScript, replace deprecated v8 type names with the shorter current names.
 
 ```diff
 - import type { DayPickerDefaultProps } from "react-day-picker";
