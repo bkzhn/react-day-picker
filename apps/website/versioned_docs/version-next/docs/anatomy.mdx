@@ -2,6 +2,9 @@
 sidebar_position: 1
 ---
 
+import anatomyDark from "../img/anatomy-dark.png";
+import anatomyLight from "../img/anatomy-light.png";
+
 # DayPicker Anatomy
 
 To better understand the documentation, familiarize yourself with the elements that compose DayPicker:
@@ -28,7 +31,7 @@ The UI elements are mapped to CSS classes. A complete list can be found in the [
         margin: "2em auto",
         display: "block",
       }}
-      src="../img/anatomy-light.png#gh-light-mode-only"
+      src={`${anatomyLight}#gh-light-mode-only`}
       alt="Screenshot of DayPicker displaying the September 2025 calendar, with the date range from the 17th to the 20th selected."
     />
     <img
@@ -38,7 +41,7 @@ The UI elements are mapped to CSS classes. A complete list can be found in the [
         margin: "2em auto",
         display: "block",
       }}
-      src="../img/anatomy-dark.png#gh-dark-mode-only"
+      src={`${anatomyDark}#gh-dark-mode-only`}
       alt="Screenshot of DayPicker displaying the September 2025 calendar, with the date range from the 17th to the 20th selected."
     />
   </div>
