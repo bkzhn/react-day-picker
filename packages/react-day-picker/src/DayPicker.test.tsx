@@ -15,6 +15,7 @@ import { DateLib, defaultLocale } from "./classes/DateLib";
 import type { MonthProps } from "./components/Month";
 import type { MonthsProps } from "./components/Months";
 import { DayPicker } from "./DayPicker";
+import { labelMonthDropdown, labelYearDropdown } from "./labels/index.js";
 import { ja } from "./locale/ja.js";
 
 const testId = "test";
@@ -470,6 +471,97 @@ test("places the year dropdown before the month dropdown for year-first locales"
   expect(combos[1]).toHaveAccessibleName(
     ja.labels?.labelMonthDropdown as string,
   );
+});
+
+describe("when using dropdowns with numberOfMonths > 1 (issue #2741)", () => {
+  beforeEach(() => {
+    render(
+      <DayPicker
+        captionLayout="dropdown"
+        numberOfMonths={2}
+        defaultMonth={new Date(2024, 0, 1)}
+      />,
+    );
+  });
+
+  describe("when choosing June from the second month dropdown", () => {
+    let grids: HTMLElement[];
+
+    beforeEach(async () => {
+      const secondMonthDropdown = screen.getAllByRole("combobox", {
+        name: labelMonthDropdown(),
+      })[1];
+
+      await user.selectOptions(secondMonthDropdown, "5");
+
+      grids = screen.getAllByRole("grid");
+    });
+
+    test("updates the first calendar to May 2024", () => {
+      expect(grids[0]).toHaveAccessibleName("May 2024");
+    });
+
+    test("updates the second calendar to June 2024", () => {
+      expect(grids[1]).toHaveAccessibleName("June 2024");
+    });
+  });
+
+  describe("when choosing 2025 from the second year dropdown", () => {
+    let grids: HTMLElement[];
+
+    beforeEach(async () => {
+      const secondYearDropdown = screen.getAllByRole("combobox", {
+        name: labelYearDropdown(),
+      })[1];
+
+      await user.selectOptions(secondYearDropdown, "2025");
+
+      grids = screen.getAllByRole("grid");
+    });
+
+    test("updates the first calendar to January 2025", () => {
+      expect(grids[0]).toHaveAccessibleName("January 2025");
+    });
+
+    test("updates the second calendar to February 2025", () => {
+      expect(grids[1]).toHaveAccessibleName("February 2025");
+    });
+  });
+});
+
+describe("when using reversed dropdowns with numberOfMonths > 1 (issue #2741)", () => {
+  beforeEach(() => {
+    render(
+      <DayPicker
+        captionLayout="dropdown"
+        numberOfMonths={2}
+        defaultMonth={new Date(2024, 0, 1)}
+        reverseMonths
+      />,
+    );
+  });
+
+  describe("when choosing June from the second month dropdown", () => {
+    let grids: HTMLElement[];
+
+    beforeEach(async () => {
+      const secondMonthDropdown = screen.getAllByRole("combobox", {
+        name: labelMonthDropdown(),
+      })[1];
+
+      await user.selectOptions(secondMonthDropdown, "5");
+
+      grids = screen.getAllByRole("grid");
+    });
+
+    test("updates the first calendar to July 2024", () => {
+      expect(grids[0]).toHaveAccessibleName("July 2024");
+    });
+
+    test("updates the second calendar to June 2024", () => {
+      expect(grids[1]).toHaveAccessibleName("June 2024");
+    });
+  });
 });
 
 test("should render the custom components", () => {
