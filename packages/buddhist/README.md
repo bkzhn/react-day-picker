@@ -8,10 +8,10 @@ This package renders DayPicker with Buddhist Era years. The calendar keeps Grego
 
 ## Installation
 
-Install the v10 prerelease of the React DayPicker package with the Buddhist calendar addon:
+Install the React DayPicker package with the Buddhist calendar addon:
 
 ```bash
-npm install @daypicker/react@next @daypicker/buddhist@next
+npm install @daypicker/react @daypicker/buddhist
 ```
 
 ## Usage
@@ -27,8 +27,8 @@ export function BuddhistCalendar() {
 
 ## Documentation
 
-- [Buddhist calendar guide](https://daypicker.dev/next/localization/buddhist)
-- [React DayPicker v10 docs](https://daypicker.dev/next)
+- [Buddhist calendar guide](https://daypicker.dev/localization/buddhist)
+- [React DayPicker docs](https://daypicker.dev)
 
 ## License
 

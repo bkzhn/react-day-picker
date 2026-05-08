@@ -8,10 +8,10 @@ This package renders DayPicker with Jalali calendar month and year logic. It use
 
 ## Installation
 
-Install the v10 prerelease of the React DayPicker package with the Persian calendar addon:
+Install the React DayPicker package with the Persian calendar addon:
 
 ```bash
-npm install @daypicker/react@next @daypicker/persian@next
+npm install @daypicker/react @daypicker/persian
 ```
 
 ## Usage
@@ -27,8 +27,8 @@ export function PersianCalendar() {
 
 ## Documentation
 
-- [Persian calendar guide](https://daypicker.dev/next/localization/persian)
-- [React DayPicker v10 docs](https://daypicker.dev/next)
+- [Persian calendar guide](https://daypicker.dev/localization/persian)
+- [React DayPicker docs](https://daypicker.dev)
 
 ## License
 

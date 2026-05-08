@@ -8,10 +8,10 @@ This package renders DayPicker with Ethiopic calendar month and year logic. It u
 
 ## Installation
 
-Install the v10 prerelease of the React DayPicker package with the Ethiopic calendar addon:
+Install the React DayPicker package with the Ethiopic calendar addon:
 
 ```bash
-npm install @daypicker/react@next @daypicker/ethiopic@next
+npm install @daypicker/react @daypicker/ethiopic
 ```
 
 ## Usage
@@ -27,8 +27,8 @@ export function EthiopicCalendar() {
 
 ## Documentation
 
-- [Ethiopic calendar guide](https://daypicker.dev/next/localization/ethiopic)
-- [React DayPicker v10 docs](https://daypicker.dev/next)
+- [Ethiopic calendar guide](https://daypicker.dev/localization/ethiopic)
+- [React DayPicker docs](https://daypicker.dev)
 
 ## License
 

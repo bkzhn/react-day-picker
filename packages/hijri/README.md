@@ -8,10 +8,10 @@ This package renders DayPicker with Umm al-Qura Hijri calendar month and year lo
 
 ## Installation
 
-Install the v10 prerelease of the React DayPicker package with the Hijri calendar addon:
+Install the React DayPicker package with the Hijri calendar addon:
 
 ```bash
-npm install @daypicker/react@next @daypicker/hijri@next
+npm install @daypicker/react @daypicker/hijri
 ```
 
 ## Usage
@@ -27,8 +27,8 @@ export function HijriCalendar() {
 
 ## Documentation
 
-- [Hijri calendar guide](https://daypicker.dev/next/localization/hijri)
-- [React DayPicker v10 docs](https://daypicker.dev/next)
+- [Hijri calendar guide](https://daypicker.dev/localization/hijri)
+- [React DayPicker docs](https://daypicker.dev)
 
 ## License
 

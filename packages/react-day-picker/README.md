@@ -6,7 +6,7 @@ You are reading the README for `react-day-picker`, the legacy DayPicker package 
 
 ## Documentation
 
-See **[daypicker.dev](https://daypicker.dev)** for guides, examples, and API reference, or read [the v10 docs in the repository](https://github.com/gpbl/react-day-picker/blob/main/apps/website/versioned_docs/version-next/start.mdx).
+See **[daypicker.dev](https://daypicker.dev)** for guides, examples, and API reference, or read [the v10 docs in the repository](https://github.com/gpbl/react-day-picker/blob/main/apps/website/docs/start.mdx).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/gpbl/react-day-picker/main/apps/website/static/img/screenshot-dark.png" />
@@ -32,13 +32,13 @@ DayPicker is written in TypeScript and compiled to CommonJS and ESM. It relies o
 Install the legacy DayPicker package name:
 
 ```bash
-npm install react-day-picker@next
+npm install react-day-picker
 ```
 
 For new projects, prefer the `@daypicker/react` package name:
 
 ```bash
-npm install @daypicker/react@next
+npm install @daypicker/react
 ```
 
 <a href="https://www.npmjs.com/package/react-day-picker"><img src="https://img.shields.io/npm/v/react-day-picker" alt="npm version"/></a> <img src="https://img.shields.io/npm/dm/react-day-picker.svg" alt="npm downloads"/> <img src="https://img.shields.io/bundlephobia/minzip/react-day-picker" alt="Min gzipped size"/>

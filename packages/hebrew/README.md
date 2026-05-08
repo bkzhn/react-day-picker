@@ -8,10 +8,10 @@ This package renders DayPicker with Hebrew lunisolar calendar month and year log
 
 ## Installation
 
-Install the v10 prerelease of the React DayPicker package with the Hebrew calendar addon:
+Install the React DayPicker package with the Hebrew calendar addon:
 
 ```bash
-npm install @daypicker/react@next @daypicker/hebrew@next
+npm install @daypicker/react @daypicker/hebrew
 ```
 
 ## Usage
@@ -27,8 +27,8 @@ export function HebrewCalendar() {
 
 ## Documentation
 
-- [Hebrew calendar guide](https://daypicker.dev/next/localization/hebrew)
-- [React DayPicker v10 docs](https://daypicker.dev/next)
+- [Hebrew calendar guide](https://daypicker.dev/localization/hebrew)
+- [React DayPicker docs](https://daypicker.dev)
 
 ## License
 

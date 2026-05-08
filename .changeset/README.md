@@ -13,10 +13,10 @@ This repo keeps the publishable packages versioned together:
 
 Private apps are ignored by Changesets. `shadcn-app-v9` intentionally depends on the published v9 package, so Changesets may print a dependency graph warning about that package during `status` or `version`. Keep `bumpVersionsWithWorkspaceProtocolOnly` disabled so the calendar package peer dependencies on `react-day-picker` are updated during versioning.
 
-The current package version is a `next` prerelease. To continue the `next` train with Changesets, enter prerelease mode before running `changeset version`:
+To publish a prerelease train with Changesets, enter prerelease mode with the desired tag before running `changeset version`:
 
 ```sh
-pnpm changeset pre enter next
+pnpm changeset pre enter <tag>
 ```
 
 Publishing runs from [`.github/workflows/release.yml`](../.github/workflows/release.yml):

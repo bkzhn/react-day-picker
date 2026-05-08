@@ -6,7 +6,7 @@ DayPicker is a [React](https://react.dev) component for creating date pickers, c
 
 ## Documentation
 
-See **[daypicker.dev](https://daypicker.dev)** for guides, examples, and API reference, or read [the v10 docs in the repository](https://github.com/gpbl/react-day-picker/blob/main/apps/website/versioned_docs/version-next/start.mdx).
+See **[daypicker.dev](https://daypicker.dev)** for guides, examples, and API reference, or read [the v10 docs in the repository](https://github.com/gpbl/react-day-picker/blob/main/apps/website/docs/start.mdx).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/gpbl/react-day-picker/main/apps/website/static/img/screenshot-dark.png" />
@@ -32,7 +32,7 @@ DayPicker is written in TypeScript and compiled to CommonJS and ESM. It relies o
 Install the preferred DayPicker package name:
 
 ```bash
-npm install @daypicker/react@next
+npm install @daypicker/react
 ```
 
 <a href="https://www.npmjs.com/package/@daypicker/react"><img src="https://img.shields.io/npm/v/%40daypicker%2Freact" alt="npm version"/></a> <img src="https://img.shields.io/npm/dm/react-day-picker.svg" alt="npm downloads"/> <img src="https://img.shields.io/bundlephobia/minzip/%40daypicker%2Freact" alt="Min gzipped size"/>
