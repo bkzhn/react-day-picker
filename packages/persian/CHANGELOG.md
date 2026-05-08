@@ -1,42 +1,24 @@
 # @daypicker/persian
 
-## 10.0.0-next.6
+DayPicker follows [Semantic Versioning](http://semver.org/). See the [Releases page](https://github.com/gpbl/react-day-picker/releases) on Github for the complete list of changes, diffs and contributors, or the [list of versions](https://www.npmjs.com/package/@daypicker/persian?activeTab=versions) published on npm.
 
-### Patch Changes
+## v10.0.0
 
-- [#2970](https://github.com/gpbl/react-day-picker/pull/2970) [`e4eea5f`](https://github.com/gpbl/react-day-picker/commit/e4eea5f0da2dbba70e4f1d12c14bab1be8620c7f) Thanks [@gpbl](https://github.com/gpbl)! - Add `@daypicker/react` as the React package for DayPicker and update calendar packages to consume it.
+_Release date: 2026-05-08_
 
-- Updated dependencies [[`e4eea5f`](https://github.com/gpbl/react-day-picker/commit/e4eea5f0da2dbba70e4f1d12c14bab1be8620c7f)]:
-  - @daypicker/react@10.0.0-next.6
+This is the first stable release of `@daypicker/persian`, the DayPicker package for Persian calendar support. It is published under the `@daypicker/*` scope and is intended to be installed alongside `@daypicker/react`.
 
-## 10.0.0-next.5
+#### Upgrading to v10
 
-### Patch Changes
+See the [upgrading guide](https://daypicker.dev/upgrading) for details on moving calendar usage to the standalone `@daypicker/*` packages.
 
-- [#2962](https://github.com/gpbl/react-day-picker/pull/2962) [`77de4f4`](https://github.com/gpbl/react-day-picker/commit/77de4f403fc77c02e64112c281ad3bc0e10f12b0) Thanks [@gpbl](https://github.com/gpbl)! - docs: simplify standalone calendar package READMEs.
+#### Installation
 
-- Updated dependencies []:
-  - react-day-picker@10.0.0-next.5
+```bash
+npm install @daypicker/react @daypicker/persian
+```
 
-## 10.0.0-next.4
+#### What's Changed
 
-### Patch Changes
-
-- Updated dependencies [a77f89c]
-  - react-day-picker@10.0.0-next.4
-
-## 10.0.0-next.3
-
-### Patch Changes
-
-- Updated dependencies [6b66f48]
-  - react-day-picker@10.0.0-next.3
-
-## 10.0.0-next.2
-
-### Patch Changes
-
-- Start publishing this calendar package as a standalone npm package.
-
-- Updated dependencies
-  - react-day-picker@10.0.0-next.2
+- feat: publish Persian calendar support as a standalone package
+- feat: update the package to consume `@daypicker/react` by [@gpbl](https://github.com/gpbl) in [#2970](https://github.com/gpbl/react-day-picker/pull/2970)
