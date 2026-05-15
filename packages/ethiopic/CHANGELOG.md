@@ -2,6 +2,17 @@
 
 DayPicker follows [Semantic Versioning](http://semver.org/). See the [Releases page](https://github.com/gpbl/react-day-picker/releases) on Github for the complete list of changes, diffs and contributors, or the [list of versions](https://www.npmjs.com/package/@daypicker/ethiopic?activeTab=versions) published on npm.
 
+## v10.0.1
+
+_Release date: 2026-05-12_
+
+This patch release keeps `@daypicker/ethiopic` aligned with `@daypicker/react` v10.0.1 and adds `@types/react` as an optional peer dependency for strict package managers.
+
+#### What's Changed
+
+- fix: add `@types/react` as an optional peer dependency by [@mrmckeb](https://github.com/mrmckeb) in [#2997](https://github.com/gpbl/react-day-picker/pull/2997)
+- chore: update `@daypicker/react` to v10.0.1
+
 ## v10.0.0
 
 _Release date: 2026-05-08_

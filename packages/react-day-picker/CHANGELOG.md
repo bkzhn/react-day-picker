@@ -2,6 +2,17 @@
 
 DayPicker follows [Semantic Versioning](http://semver.org/). See the [Releases page](https://github.com/gpbl/react-day-picker/releases) on Github for the complete list of changes, diffs and contributors, or the [list of versions](https://www.npmjs.com/package/react-day-picker?activeTab=versions) published on npm.
 
+## v10.0.1
+
+_Release date: 2026-05-12_
+
+This patch release fixes inline styles for component slots and adds `@types/react` as an optional peer dependency for strict package managers.
+
+#### What's Changed
+
+- fix: apply inline styles to all component slots by [@gpbl](https://github.com/gpbl) in [#2995](https://github.com/gpbl/react-day-picker/pull/2995)
+- fix: add `@types/react` as an optional peer dependency by [@mrmckeb](https://github.com/mrmckeb) in [#2997](https://github.com/gpbl/react-day-picker/pull/2997)
+
 ## v10.0.0
 
 _Release date: 2026-05-08_
